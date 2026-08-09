@@ -2,42 +2,56 @@
 
 class smart_array {
 private:
-	int SIZE;
-	int* arr = new int[SIZE];
-	int count;
+    int SIZE;
+    int* arr;
+    int count;
 public:
-	smart_array(int var) : SIZE(var), count(0) {}
+    smart_array(int var) : SIZE(var), count(0) {
+        arr = new int[SIZE]();
+    }
 
-	void add_element(int el) {
-		if (count > SIZE - 1) {
-			throw std::runtime_error("Размер массива не соответствует количеству вносимых элементов!");
-		}
-		arr[count++] = el;
-	}
+    smart_array(const smart_array& other)
+        : SIZE(other.SIZE), count(other.count) {
+        arr = new int[SIZE];
+        for (int i = 0; i < count; i++) {
+            arr[i] = other.arr[i];
+        }
+    }
 
-	int get_element(int index) {
-		if (index > SIZE - 1) {
-			throw std::runtime_error("Индекс вне диапазона массива!");
-		}
+    void add_element(int el) {
+        if (count >= SIZE) {
+            throw std::runtime_error("Размер массива не соответствует количеству вносимых элементов!");
+        }
+        arr[count++] = el;
+    }
 
-		return arr[index];
+    int get_element(int index) const {
+        if (index >= SIZE) {
+            throw std::runtime_error("Индекс вне диапазона массива!");
+        }
+        return arr[index];
+    }
 
-	}
-	void operator=(const smart_array& new_array) {
-		if (this->SIZE >= new_array.SIZE) {
-			for (int i = 0; i < new_array.SIZE; i++)
-			{
-				this->arr[i] = new_array.arr[i];
-			}
-		}
-		else if (new_array.SIZE > this->SIZE) {
-			throw std::runtime_error("Копирование невозможно!");
-		}
-	}
+    smart_array& operator=(const smart_array& other) {
+        if (this == &other) {
+            return *this; 
+        }
 
-	~smart_array() {
-		delete[] arr;
-	}
+        delete[] arr; 
+
+        SIZE = other.SIZE;
+        count = other.count;
+        arr = new int[SIZE];
+        for (int i = 0; i < count; i++) {
+            arr[i] = other.arr[i];
+        }
+
+        return *this;
+    }
+
+    ~smart_array() {
+        delete[] arr;
+    }
 };
 
 
@@ -54,7 +68,7 @@ int main() {
 
 		arr = new_array;
 
-		std::cout << arr.get_element(2) << std::endl;
+		std::cout << arr.get_element(1) << std::endl;
 		std::cout << new_array.get_element(0) << std::endl;
 
 	}

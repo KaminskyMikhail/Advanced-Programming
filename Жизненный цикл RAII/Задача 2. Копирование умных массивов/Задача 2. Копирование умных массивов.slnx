@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Задача 2. Копирование умных массивов.vcxproj" />
+  <Project Path="Задача 2. Копирование умных массивов.vcxproj" Id="67e8dfee-bfe3-4aba-bbb5-09df8bffe83f" />
 </Solution>

@@ -3,10 +3,15 @@
 class smart_array {
 private:
 	int SIZE;
-	int* arr = new int[SIZE];
+	int* arr;
 	int count;
 public:
-	smart_array(int var) : SIZE(var), count(0) {}
+	smart_array(int var) : SIZE(var), count(0) {
+		arr = new int[SIZE];
+		for (int i = 0; i < SIZE - 1; i++) {
+			arr[i] = 0;
+		}
+	}
 
 	void add_element(int el){
 		if (count > SIZE - 1) {
@@ -39,7 +44,7 @@ int main() {
 		arr.add_element(14);
 		arr.add_element(15);
 		//arr.add_element(16);
-		std::cout << arr.get_element(5) << std::endl;
+		std::cout << arr.get_element(2) << std::endl;
 	}
 	catch (const std::exception& ex) {
 		std::cout << ex.what() << std::endl;
