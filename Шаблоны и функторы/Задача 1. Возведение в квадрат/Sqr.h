@@ -1,35 +1,19 @@
 #pragma once
 #include<vector>
 #include<iostream>
-template<typename T>
+template <typename T>
 
-T sqr(T el) {
+T square(T el) {
 
-	std::cout << "[IN}: " << el << std::endl;
 	return el * el;
 	
 }
 
-template<>
-std::vector<int>sqr (std::vector<int> arr) {
+template <typename T>
+std::vector<T> sqr(std::vector<T>& arr) {
 
-	bool first = true;
-
-		for (auto x : arr)
-		{
-			if (first) {
-				std::cout << "\n[IN]: ";
-				first = false;
-			}
-			else {
-				std::cout << ", ";
-			}
-			std::cout << x;
-		}
-
-	for (int i = 0; i < arr.size(); i++) {
-		arr[i] *= arr[i];
+	for (auto& x : arr) {
+		x = square(x);
 	}
-
 	return arr;
 }

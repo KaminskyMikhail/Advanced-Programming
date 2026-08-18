@@ -3,25 +3,25 @@
 #include "Sqr.h"
 
 int main() {
+	int val = 4;
+	std::cout << "[IN]: " << val << std::endl;
 
-	auto var = sqr(4);
+	val = square(val);
 
-	std::cout << "[OUT]: " << var << std::endl;
+	std::cout << "[OUT]: " << val << std::endl;
 	
 	std::vector<int> V{ -1, 2, 3, 6 };
 	
+	std::cout << "[IN]: ";
 
-	bool first = true;
-	for (auto x : sqr(V))
-	{
-		if (first) {
-			std::cout << "\n[OUT]: ";
-			first = false;
-		}
-		else {
-			std::cout << ", ";
-		}
-		std::cout << x;
+	for (const auto& x : V) {
+		std::cout << x << " ";
+	}
+
+	std::cout << "\n[OUT]: ";
+
+	for (auto x : sqr(V)) {
+		std::cout << x << " ";
 	}
 
 	std::cout << std::endl;

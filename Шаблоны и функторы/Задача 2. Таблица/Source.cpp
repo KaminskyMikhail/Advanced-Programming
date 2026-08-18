@@ -10,18 +10,15 @@ public:
 	Matrix(int rows, int cols) : arr(new T*[rows]), rows(rows), cols(cols) {
 		for (int i = 0; i < rows; i++)
 		{
-			for (int j = 0; j < cols; j++)
-			{
-				arr[i] = new T[cols];
-			}
+			arr[i] = new T[cols];
 		}
 	}
 
-	T* operator[](T row) const{
+	T* operator[](int row) const{
 		return arr[row];
 	}
 
-	T* operator[](T row){
+	T* operator[](int row){
 		return arr[row];
 	}
 
@@ -37,7 +34,7 @@ public:
 	
 		auto arr = Matrix<int>(3, 4);
 		arr[0][0] = 4;
-		std::cout << arr[0][0];
+		std::cout << arr[0][0] << std::endl;
 	
 	}
 
